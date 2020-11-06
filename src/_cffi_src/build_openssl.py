@@ -69,7 +69,7 @@ def _extra_compile_args(platform):
         platform in ["win32", "hp-ux11", "sunos5"]
         or platform.startswith("aix")
     ):
-        return ["-Wconversion", "-Wno-error=sign-conversion"]
+        return ["-Wconversion"]
     else:
         return []
 
