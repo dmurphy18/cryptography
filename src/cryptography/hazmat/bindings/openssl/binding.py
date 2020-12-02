@@ -96,7 +96,7 @@ def build_conditional_library(lib, conditional_names):
     conditional_lib._original_lib = lib
     excluded_names = set()
     for condition, names_cb in conditional_names.items():
-        print('DGM build_conditional_library for loop condition '{}', names_cb "{}"'.format(condition, names_cb))
+        print('DGM build_conditional_library for loop condition "{}", names_cb "{}"'.format(condition, names_cb))
         if not getattr(lib, condition):
             excluded_names.update(names_cb())
 
