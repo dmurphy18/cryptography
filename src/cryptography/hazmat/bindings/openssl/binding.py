@@ -96,9 +96,11 @@ def build_conditional_library(lib, conditional_names):
     conditional_lib._original_lib = lib
     excluded_names = set()
     for condition, names_cb in conditional_names.items():
+        print('DGM build_conditional_library for loop condition '{}', names_cb "{}"'.format(condition, names_cb))
         if not getattr(lib, condition):
             excluded_names.update(names_cb())
 
+    print('DGM build_conditional_library dir lib is "{}"'.format(dir(lib)))
     for attr in dir(lib):
         if attr not in excluded_names:
             setattr(conditional_lib, attr, getattr(lib, attr))
@@ -136,7 +138,9 @@ class Binding(object):
     def _ensure_ffi_initialized(cls):
         with cls._init_lock:
             if not cls._lib_loaded:
+                print('DGM _ensure_ffi_initialized not cls._lib_loaded, CONDITIONAL_NAMES "{}"'.format(CONDITIONAL_NAMES))
                 cls.lib = build_conditional_library(lib, CONDITIONAL_NAMES)
+                print('DGM _ensure_ffi_initialized dir cls._lib is "{}"'.format(dir(cls._lib)))
                 cls._lib_loaded = True
                 # initialize the SSL library
                 cls.lib.SSL_library_init()
@@ -167,6 +171,7 @@ class Binding(object):
 
 
 def _verify_openssl_version(lib):
+    print('DGM _verify_openssl_version dir cls._lib is "{}"'.format(dir(cls._lib)))
     if (
         lib.CRYPTOGRAPHY_OPENSSL_LESS_THAN_110
         and not lib.CRYPTOGRAPHY_IS_LIBRESSL
@@ -197,6 +202,7 @@ def _verify_package_version(version):
     # up later this code checks that the currently imported package and the
     # shared object that were loaded have the same version and raise an
     # ImportError if they do not
+    print('DGM _verify_package_version verison "{}"'.format(version)
     so_package_version = ffi.string(lib.CRYPTOGRAPHY_PACKAGE_VERSION)
     if version.encode("ascii") != so_package_version:
         raise ImportError(
