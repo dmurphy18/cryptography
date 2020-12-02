@@ -202,7 +202,7 @@ def _verify_package_version(version):
     # up later this code checks that the currently imported package and the
     # shared object that were loaded have the same version and raise an
     # ImportError if they do not
-    print('DGM _verify_package_version verison "{}"'.format(version)
+    print('DGM _verify_package_version verison "{}"'.format(version))
     so_package_version = ffi.string(lib.CRYPTOGRAPHY_PACKAGE_VERSION)
     if version.encode("ascii") != so_package_version:
         raise ImportError(
