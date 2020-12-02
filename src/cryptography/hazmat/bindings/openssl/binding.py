@@ -171,7 +171,7 @@ class Binding(object):
 
 
 def _verify_openssl_version(lib):
-    print('DGM _verify_openssl_version dir cls.lib is "{}"'.format(dir(cls.lib)))
+    print('DGM _verify_openssl_version dir lib is "{}"'.format(dir(lib)))
     if (
         lib.CRYPTOGRAPHY_OPENSSL_LESS_THAN_110
         and not lib.CRYPTOGRAPHY_IS_LIBRESSL
