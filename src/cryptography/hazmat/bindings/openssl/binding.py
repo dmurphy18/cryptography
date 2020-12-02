@@ -140,7 +140,7 @@ class Binding(object):
             if not cls._lib_loaded:
                 print('DGM _ensure_ffi_initialized not cls._lib_loaded, CONDITIONAL_NAMES "{}"'.format(CONDITIONAL_NAMES))
                 cls.lib = build_conditional_library(lib, CONDITIONAL_NAMES)
-                print('DGM _ensure_ffi_initialized dir cls._lib is "{}"'.format(dir(cls._lib)))
+                print('DGM _ensure_ffi_initialized dir cls.lib is "{}"'.format(dir(cls.lib)))
                 cls._lib_loaded = True
                 # initialize the SSL library
                 cls.lib.SSL_library_init()
@@ -171,7 +171,7 @@ class Binding(object):
 
 
 def _verify_openssl_version(lib):
-    print('DGM _verify_openssl_version dir cls._lib is "{}"'.format(dir(cls._lib)))
+    print('DGM _verify_openssl_version dir cls.lib is "{}"'.format(dir(cls.lib)))
     if (
         lib.CRYPTOGRAPHY_OPENSSL_LESS_THAN_110
         and not lib.CRYPTOGRAPHY_IS_LIBRESSL
