@@ -92,7 +92,7 @@ def _openssl_assert(lib, ok, errors=None):
 
 
 def build_conditional_library(lib, conditional_names):
-    print('DGM build_conditional_library entry')
+    print('DGM_build_conditional_library entry')
     conditional_lib = types.ModuleType("lib")
     conditional_lib._original_lib = lib
     excluded_names = set()
@@ -122,7 +122,7 @@ class Binding(object):
     _lock_init_lock = threading.Lock()
 
     def __init__(self):
-        print('DGM Binding init')
+        print('DGM_Binding_init')
         self._ensure_ffi_initialized()
 
     @classmethod
@@ -141,7 +141,7 @@ class Binding(object):
     def _ensure_ffi_initialized(cls):
         with cls._init_lock:
             if not cls._lib_loaded:
-                print('DGM _ensure_ffi_initialized not cls._lib_loaded, CONDITIONAL_NAMES "{}"'.format(CONDITIONAL_NAMES))
+                print('DGM__ensure_ffi_initialized not cls._lib_loaded, CONDITIONAL_NAMES "{}"'.format(CONDITIONAL_NAMES))
                 cls.lib = build_conditional_library(lib, CONDITIONAL_NAMES)
                 print('DGM _ensure_ffi_initialized dir cls.lib is "{}"'.format(dir(cls.lib)))
                 cls._lib_loaded = True
