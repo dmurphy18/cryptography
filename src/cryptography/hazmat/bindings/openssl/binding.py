@@ -92,6 +92,7 @@ def _openssl_assert(lib, ok, errors=None):
 
 
 def build_conditional_library(lib, conditional_names):
+    print('DGM build_conditional_library entry')
     conditional_lib = types.ModuleType("lib")
     conditional_lib._original_lib = lib
     excluded_names = set()
@@ -105,6 +106,7 @@ def build_conditional_library(lib, conditional_names):
         if attr not in excluded_names:
             setattr(conditional_lib, attr, getattr(lib, attr))
 
+    print('DGM build_conditional_library exit')
     return conditional_lib
 
 
@@ -120,6 +122,7 @@ class Binding(object):
     _lock_init_lock = threading.Lock()
 
     def __init__(self):
+        print('DGM Binding init')
         self._ensure_ffi_initialized()
 
     @classmethod
