@@ -69,7 +69,7 @@ def _extra_compile_args(platform):
             or "clang" in cmd.compiler.compiler[0]
         )
     print('DGM extra_compile_args is_gcc "{}", sys.platform "{}"'.format(is_gcc, sys.platform))
-    if sys.plaform == "freebsd10":
+    if sys.platform == "freebsd10":
         return []
 
     if is_gcc or not (
