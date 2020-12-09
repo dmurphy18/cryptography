@@ -68,8 +68,12 @@ def _extra_compile_args(platform):
             "gcc" in cmd.compiler.compiler[0]
             or "clang" in cmd.compiler.compiler[0]
         )
+    print('DGM extra_compile_args is_gcc "{}", sys.platform "{}"'.format(is_gcc, sys.platform))
+    if sys.plaform == "freebsd10":
+        return []
+
     if is_gcc or not (
-        platform in ["win32", "hp-ux11", "sunos5"]
+        platform in ["win32", "hp-ux11", "sunos5", "freebsd10"]
         or platform.startswith("aix")
     ):
         return ["-Wconversion", "-Wno-error=sign-conversion"]
